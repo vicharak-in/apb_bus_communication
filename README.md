@@ -49,9 +49,13 @@ transfers are supported.
 
 Advantages of APB Bus:
 --Simplicity: The APB protocol is relatively simple and easy to understand compared to more complex bus protocols like AHB (Advanced High-performance Bus) and AXI (Advanced eXtensible Interface). This simplicity can lead to faster design and verification.
+
 --Low Power: APB is designed to be a low-power protocol, making it suitable for battery-operated devices and low-power applications. It minimizes power consumption by avoiding excessive toggling of signals when idle.
+
 --Area Efficiency: APB typically requires less area on the chip compared to more complex bus protocols, which can help reduce the size and cost of the silicon.
+
 --Peripheral Integration: It is well-suited for integrating simple peripherals, such as UARTs, timers, and GPIO controllers, into an SoC.
+
 --Legacy Compatibility: Many existing designs and IP blocks are based on the APB protocol, making it valuable for designs that need to interoperate with legacy components.
 
 Disadvantages of APB Bus:
