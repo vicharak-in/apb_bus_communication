@@ -26,6 +26,7 @@ This design works only for the write transfer
 APB Protocol- LEARNINGS
 
 1. What are different types of bus protocols and why should we have them? Difference between throughput, bandwidth and latency?
+   
 -->  APB, AHB and AXI are the different buses which are part of AMBA family protocols. The Advanced Microcontroller Bus Architecture, or AMBA, is an open-standard, on-chip interconnect specification for the connection and management of functional blocks in system-on-a-chip (SoC) designs.
 - AMBA provides several benefits:
 - Efficient IP reuse: IP reuse is an essential component in reducing SoC development costs and timescales. AMBA specifications provide the interface standard that enables IP reuse. Therefore, thousands of SoCs, and IP products, are using AMBA interfaces.
@@ -48,6 +49,7 @@ It is a simple non-pipelined protocol that can be used to communicate(read or wr
 transfers are supported.
 
 Advantages of APB Bus:
+
 --Simplicity: The APB protocol is relatively simple and easy to understand compared to more complex bus protocols like AHB (Advanced High-performance Bus) and AXI (Advanced eXtensible Interface). This simplicity can lead to faster design and verification.
 
 --Low Power: APB is designed to be a low-power protocol, making it suitable for battery-operated devices and low-power applications. It minimizes power consumption by avoiding excessive toggling of signals when idle.
@@ -59,6 +61,7 @@ Advantages of APB Bus:
 --Legacy Compatibility: Many existing designs and IP blocks are based on the APB protocol, making it valuable for designs that need to interoperate with legacy components.
 
 Disadvantages of APB Bus:
+
 --Limited Bandwidth: APB has a lower bandwidth compared to more advanced bus protocols like AHB and AXI. This limitation can be a bottleneck for high-performance applications with demanding data transfer requirements.
 
 --Not Suitable for High-Performance Cores: APB is not suitable for connecting high-performance CPU cores and memory subsystems due to its limited bandwidth and simplicity. For such applications, more advanced bus protocols like AHB or AXI are preferred.
@@ -73,12 +76,14 @@ In summary, the choice of using the APB bus or any other bus protocol depends on
  
 
 3. Why bus like APB, when we have high speed buses like AHB or AXI?
+   
 --> APB is a system bus for low bandwidth peripherals unlike AHB/AXI is used for High-Frequency Design
 
-4. What is the operating frequency of APB?
+5. What is the operating frequency of APB?
+   
 --> 20-50mhz
 
-5. What are the various interfacing signals in AMBA APB protocol specification v2.0 and their importance?
+7. What are the various interfacing signals in AMBA APB protocol specification v2.0 and their importance?
 --> PCLK -  Clock. The rising edge of PCLK times all transfers on the APB.
    
     PRESETn - Reset. The APB reset signal is active LOW. This signal is normally connected directly to the system bus reset signal.
@@ -102,33 +107,40 @@ In summary, the choice of using the APB bus or any other bus protocol depends on
    PSLVERR - This signal indicates a transfer failure. APB peripherals are not required to support the PSLVERR pin. This is true for both existing and new APB peripheral designs. Where a peripheral does not include this pin then the appropriate input to the APB bridge is tied LOW.
  
 
-7. What is the relevance of protection in APB protocol? How is the secure transfer ensured?
+9. What is the relevance of protection in APB protocol? How is the secure transfer ensured?
+    
 -->  This signal indicates the normal, privileged, or secure protection level of the transaction and whether the transaction is a data access or an instruction access.
 
-8. What is the data and the address width of the bus?
+11. What is the data and the address width of the bus?
+    
 --> 32 bits 
 
-9. Why do we have PSTRB signal?
+13. Why do we have PSTRB signal?
+    
 --> A write strobe signal to enable sparse data transfer on the write data bus. This version of the specification is referred to as APB4.
 
-10. Should the PSEL and PENABLE remain high if the same peripheral is selected again for the transaction according to the protocol?
+15. Should the PSEL and PENABLE remain high if the same peripheral is selected again for the transaction according to the protocol?
+    
 -->  The enable signal PENABLE, is deasserted at the end of the transfer. The select signal PSEL, is also deasserted unless the transfer is to be followed immediately by another transfer to the same peripheral 
 
 
-11. When we say address in PADDR, what exactly does it mean? 
+17. When we say address in PADDR, what exactly does it mean?
+    
 -->  When we say "getting the address of that peripheral," it means determining the specific memory address or range of addresses associated with a particular peripheral device.
 
-12. What is the significance of PENABLE signal when we have PREADY, PSEL, PWRITE signals?
+19. What is the significance of PENABLE signal when we have PREADY, PSEL, PWRITE signals?
+    
 --> The penable is required because,
 Psel is used to select a slave, pwrite is to configure it as a read/ write transfer, pready is a confirmation from the slaves end that it is ready for the transaction, so now that we have understood what the other signals do but have we initiated the tranfser yet? No, so this is what Penable does. 
 
 
-13. What is read and write transfers with wait states and with no wait states?
+21. What is read and write transfers with wait states and with no wait states?
+    
 --> With wait is,
 if the slave is busy with some other opeartion then it would respond back with the ready after it gets free so until then the master has to wait which is called as read/write transfer with wait state and if free it respinds back with the ready immediately where, no wait states are required.
  
-14. What are the states in which APB operates?
+23. What are the states in which APB operates?
 --> IDLE, SETUP and ACCESS
 
-15. Is it possible for data transfers to occur on both buses at the same time?
+24. Is it possible for data transfers to occur on both buses at the same time?
 -->  The APB protocol has two independent data buses, one for read data and one for write data. The buses can be up to 32 bits wide. Because the buses do not have their own individual handshake signals, so it is not possible for data transfers to occur on both buses at the same time. 
