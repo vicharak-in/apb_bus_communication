@@ -86,26 +86,28 @@ In summary, the choice of using the APB bus or any other bus protocol depends on
 7. What are the various interfacing signals in AMBA APB protocol specification v2.0 and their importance?
    
 --> PCLK -  Clock. The rising edge of PCLK times all transfers on the APB.
+    
+  PENABLE - Enable. This signal indicates the second and subsequent cycles of an APB transfer.
    
-    PRESETn - Reset. The APB reset signal is active LOW. This signal is normally connected directly to the system bus reset signal.
+  PRESETn - Reset. The APB reset signal is active LOW. This signal is normally connected directly to the system bus reset signal.
+    
+  PADDR - Address. This is the APB address bus. It can be up to 32 bits wide and is driven by the peripheral bus bridge unit.
+    
+  PPROT - Protection type. This signal indicates the normal, privileged, or secure protection level of the transaction and whether the transaction is a data access or an instruction access.
+    
+  PSELx - Select. The APB bridge unit generates this signal to each peripheral bus slave. It indicates that the slave device is selected and that a data transfer is required. There is a PSELx signal for each slave.
    
-    PADDR - Address. This is the APB address bus. It can be up to 32 bits wide and is driven by the peripheral bus bridge unit.
+  PWRITE - Direction. This signal indicates an APB write access when HIGH and an APB read access when LOW.
    
-    PPROT - Protection type. This signal indicates the normal, privileged, or secure protection level of the transaction and whether the transaction is a data access or an instruction access.
+  PWDATA - Write data. This bus is driven by the peripheral bus bridge unit during write cycles when PWRITE is HIGH. This bus can be up to 32 bits wide.
    
-    PSELx - Select. The APB bridge unit generates this signal to each peripheral bus slave. It indicates that the slave device is selected and that a data transfer is required. There is a PSELx signal for each slave.
-   PENABLE - Enable. This signal indicates the second and subsequent cycles of an APB transfer.
+  PSTRB - Write strobes. This signal indicates which byte lanes to update during a write transfer. There is one write strobe for each eight bits of the write data bus. Write strobes must not be active during a read transfer.
    
-   PWRITE - Direction. This signal indicates an APB write access when HIGH and an APB read access when LOW.
+  PREADY - Ready. The slave uses this signal to extend an APB transfer.
    
-   PWDATA - Write data. This bus is driven by the peripheral bus bridge unit during write cycles when PWRITE is HIGH. This bus can be up to 32 bits wide.
+  PRDATA - Read Data. The selected slave drives this bus during read cycles when PWRITE is LOW. This bus can be up to 32-bits wide.
    
-   PSTRB - Write strobes. This signal indicates which byte lanes to update during a write transfer. There is one write strobe for each eight bits of the write data bus. Write strobes must not be active during a read transfer.
-   PREADY - Ready. The slave uses this signal to extend an APB transfer.
-   
-   PRDATA - Read Data. The selected slave drives this bus during read cycles when PWRITE is LOW. This bus can be up to 32-bits wide.
-   
-   PSLVERR - This signal indicates a transfer failure. APB peripherals are not required to support the PSLVERR pin. This is true for both existing and new APB peripheral designs. Where a peripheral does not include this pin then the appropriate input to the APB bridge is tied LOW.
+  PSLVERR - This signal indicates a transfer failure. APB peripherals are not required to support the PSLVERR pin. This is true for both existing and new APB peripheral designs. Where a peripheral does not include this pin then the appropriate input to the APB bridge is tied LOW.
  
 
 9. What is the relevance of protection in APB protocol? How is the secure transfer ensured?
