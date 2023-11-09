@@ -143,7 +143,9 @@ Psel is used to select a slave, pwrite is to configure it as a read/ write trans
 if the slave is busy with some other opeartion then it would respond back with the ready after it gets free so until then the master has to wait which is called as read/write transfer with wait state and if free it respinds back with the ready immediately where, no wait states are required.
  
 23. What are the states in which APB operates?
+    
 --> IDLE, SETUP and ACCESS
 
-24. Is it possible for data transfers to occur on both buses at the same time?
+25. Is it possible for data transfers to occur on both buses at the same time?
+    
 -->  The APB protocol has two independent data buses, one for read data and one for write data. The buses can be up to 32 bits wide. Because the buses do not have their own individual handshake signals, so it is not possible for data transfers to occur on both buses at the same time. 
