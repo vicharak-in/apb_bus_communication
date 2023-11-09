@@ -84,6 +84,7 @@ In summary, the choice of using the APB bus or any other bus protocol depends on
 --> 20-50mhz
 
 7. What are the various interfacing signals in AMBA APB protocol specification v2.0 and their importance?
+   
 --> PCLK -  Clock. The rising edge of PCLK times all transfers on the APB.
    
     PRESETn - Reset. The APB reset signal is active LOW. This signal is normally connected directly to the system bus reset signal.
